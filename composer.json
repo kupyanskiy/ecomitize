@@ -1,0 +1,14 @@
+{
+    "name": "cupper/ecomitize",
+    "description": "Test project.",
+    "type": "project",
+    "require": {
+        "php": ">=7.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7"
+    },
+    "autoload": {
+        "psr-4": { "Ecomitize\\": ["/var/www/", "/app/src/"] }
+    }
+}

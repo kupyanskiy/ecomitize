@@ -1,0 +1,8 @@
+# Build data
+/build
+
+# Managed by Composer
+/vendor
+
+# PhpStorm
+/.idea
