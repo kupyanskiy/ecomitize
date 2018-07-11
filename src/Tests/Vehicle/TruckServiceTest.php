@@ -1,5 +1,6 @@
 <?php
 
+use Ecomitize\Services\ActionFactory;
 use Ecomitize\Services\VehicleFactory;
 use Ecomitize\Services\View\ViewService;
 use PHPUnit\Framework\TestCase;
@@ -23,9 +24,36 @@ class TruckServiceTest extends TestCase
                 ['kamaz refuel diesel']
             );
 
-        $vehicle = VehicleFactory::create('truck', 'diesel', $view)->setName('kamaz');
-        $vehicle->animate();
-        $vehicle->stop();
-        $vehicle->refuel();
+        $vehicle = VehicleFactory::create('truck', 'diesel', $view);
+        $vehicle->setName('kamaz');
+        $vehicle->add(ActionFactory::create('move'));
+        $vehicle->add(ActionFactory::create('stop'));
+        $vehicle->add(ActionFactory::create('emptyLoads'));
+        $vehicle->add(ActionFactory::create('move'));
+        $vehicle->add(ActionFactory::create('stop'));
+        $vehicle->add(ActionFactory::create('refuel'));
+        $vehicle->render();
+    }
+
+    public function testClear()
+    {
+        $view = $this->getMockBuilder(ViewService::class)
+            ->setMethods(['render'])
+            ->getMock();
+
+        $view->expects($this->exactly(2))
+            ->method('render')
+            ->withConsecutive(
+                ['kamaz moving'],
+                ['kamaz stopping']
+            );
+
+        $vehicle = VehicleFactory::create('truck', 'diesel', $view);
+        $vehicle->setName('kamaz');
+        $vehicle->add(ActionFactory::create('move'));
+        $vehicle->render();
+        $vehicle->clear();
+        $vehicle->add(ActionFactory::create('stop'));
+        $vehicle->render();
     }
 }

@@ -7,7 +7,8 @@ In commands below need to replace {full-path-to-project} on real path of the clo
 
 docker run -it --rm -v {full-path-to-project}/:/app composer install
 
-```Loading composer repositories with package information
+```
+Loading composer repositories with package information
 Installing dependencies (including require-dev) from lock file
 Package operations: 27 installs, 0 updates, 0 removals
   - Installing webmozart/assert (1.3.0): Downloading (100%)
@@ -49,7 +50,8 @@ Generating autoload files
 
 docker run -it --rm -v {full-path-to-project}/:/app epcallan/php7-testing-phpunit:7.1-phpunit7 phpunit -c /app/phpunit.xml
 
-```PHPUnit 7.2.6 by Sebastian Bergmann and contributors.
+```
+   PHPUnit 7.2.6 by Sebastian Bergmann and contributors.
    
    Runtime:       PHP 7.1.18 with Xdebug 2.6.0
    Configuration: /app/phpunit.xml
@@ -95,7 +97,8 @@ docker run -p 80:80 -v {full-path-to-project}/src/:/var/www/ -v {full-path-to-pr
 
 Load web page from localhost
 
-```bmv moving
+```
+   bmv moving
    bmv music switched on
    bmv stopping
    bmv refuel gasoline

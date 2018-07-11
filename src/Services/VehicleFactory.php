@@ -2,6 +2,7 @@
 
 namespace Ecomitize\Services;
 
+use Ecomitize\Services\Vehicle\VehicleService;
 use Ecomitize\Services\View\ViewService;
 
 /**
@@ -11,7 +12,7 @@ use Ecomitize\Services\View\ViewService;
  */
 class VehicleFactory
 {
-    public static function create(string $vehicle, string $fuel, ViewInterface $view = null) :VehicleInterface
+    public static function create(string $vehicle, string $fuel, ViewInterface $view = null) :VehicleService
     {
         $classNameVehicle = '\\Ecomitize\\Services\\Vehicle\\'.ucwords($vehicle).'Service';
         $classNameFuel = '\\Ecomitize\\Services\\Fuel\\'.ucwords($fuel).'Service';
@@ -28,6 +29,10 @@ class VehicleFactory
             $view = new ViewService();
         }
 
-        return new $classNameVehicle($view, new $classNameFuel());
+        $vehicle = new $classNameVehicle();
+        $vehicle->setView($view);
+        $vehicle->setFuel(new $classNameFuel());
+
+        return $vehicle;
     }
 }

@@ -7,21 +7,7 @@ namespace Ecomitize\Services\Vehicle;
  *
  * @package Ecomitize\Services
  */
-class BoatService extends VehicleAbstractService
+class BoatService extends VehicleService
 {
-    public function animate(): void
-    {
-        $this->move();
-        $this->swim();
-    }
 
-    public function swim() :void
-    {
-        $this->view->render($this->getName() . ' swimming');
-    }
-
-    public function move() :void
-    {
-        $this->view->render($this->getName() . ' moving');
-    }
 }

@@ -7,23 +7,7 @@ namespace Ecomitize\Services\Vehicle;
  *
  * @package Ecomitize\Services
  */
-class TruckService extends VehicleAbstractService
+class TruckService extends VehicleService
 {
-    public function animate(): void
-    {
-        $this->move();
-        $this->stop();
-        $this->emptyLoads();
-        $this->move();
-    }
 
-    public function move() :void
-    {
-        $this->view->render($this->getName().' moving');
-    }
-
-    public function emptyLoads() :void
-    {
-        $this->view->render($this->getName() .' empty loads');
-    }
 }
